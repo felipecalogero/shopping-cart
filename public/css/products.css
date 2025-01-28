@@ -28,6 +28,16 @@ h1 {
     justify-content: center;
 }
 
+.empty-products {
+    text-align: center;
+}
+
+.empty-products p {
+    font-size: 18px;
+    color: #333;
+}
+
+
 @media (max-width: 1024px) {
     .products {
         grid-template-columns: repeat(3, 1fr);
