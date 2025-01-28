@@ -13,8 +13,8 @@ Este é um sistema de mini e-commerce desenvolvido com **Laravel**, que inclui f
 
 ## Requisitos
 
-- **Docker**: Para executar os contêineres.
-- **Docker Compose**: Para facilitar a orquestração dos contêineres.
+- **Docker**
+- **Docker Compose**
 
 ## Instalação
 
@@ -46,7 +46,7 @@ php artisan migrate
 ### 5. Popular o banco de dados com dados de exemplo
 Você pode popular o banco de dados com dados de exemplo utilizando o comando de seeder:
 ```bash
-docker-compose exec app php artisan db:seed
+php artisan db:seed
 ```
 
 ### 6. Acessar a aplicação no navegador
