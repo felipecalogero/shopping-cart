@@ -1,0 +1,30 @@
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        USER_ID: ${USER_ID:-1000}
+        GROUP_ID: ${GROUP_ID:-1000}
+    volumes:
+      - .:/var/www/html/:cached
+    ports:
+      - "8001:8080"
+      - "9003:9003"
+    depends_on:
+      - mysql
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - ./db-data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: shopping_cart
+    ports:
+      - "3310:3306"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

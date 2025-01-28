@@ -1,1 +1,5 @@
 *.sqlite*
+db-data/mysql/shopping_cart/*.ibd
+*.log
+*.tmp
+/storage/*

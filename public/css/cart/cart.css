@@ -1,0 +1,177 @@
+/* Geral */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Cart Container */
+.cart-container {
+    margin: 0;
+    min-width: 44%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.cart-table th {
+    background-color: #f2f2f2;
+}
+
+.cart-table tr {
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.remove-btn {
+    color: #e74c3c;
+    text-decoration: none;
+}
+
+/* Checkout Form */
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-form label {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.checkout-form select,
+.checkout-form input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.submit-btn,
+.empty-btn {
+    padding: 15px;
+    background-color: #28a745;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.submit-btn:hover,
+.empty-btn {
+    background-color: #218838;
+}
+
+/* Card fields */
+
+.credit-card-fields {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 10px;
+    column-gap: 40px;
+    margin-top: 20px;
+    max-width: 98%;
+}
+
+.input-group {
+    flex: 1 1 calc(50% - 40px);
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+}
+
+.input-group label {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.empty-cart {
+    text-align: center;
+}
+
+.empty-cart p {
+    font-size: 18px;
+    color: #333;
+}
+
+#number-months-fields {
+    margin-top: 14px;
+}
+
+#number-months {
+    width: 30%;
+}
+
+h3 {
+    margin-top: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .cart-container {
+        min-width: 90%;
+    }
+
+    .cart-table th,
+    .cart-table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .input-group input {
+        width: 97%;
+    }
+
+    #number-months {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .credit-card-fields {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .input-group label {
+        font-size: 14px;
+    }
+
+    .submit-btn {
+        font-size: 16px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+}
