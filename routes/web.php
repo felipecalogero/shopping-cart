@@ -19,4 +19,4 @@ Route::get( '/', [ProductController::class, 'showProducts'])->name('products');
 Route::get('/carrinho', [CartController::class, 'showCart'])->name('cart.show');
 Route::post('/adicionar-carrinho/{product}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::get('/remover-carrinho/{product}', [CartController::class, 'removeFromCart'])->name('cart.remove');
-Route::post('/pedido-realizado', [CartController::class, 'finalOrder'])->name('cart.checkout');
+Route::post('/pedido-realizado', [CartController::class, 'finalizeOrder'])->name('cart.checkout');
