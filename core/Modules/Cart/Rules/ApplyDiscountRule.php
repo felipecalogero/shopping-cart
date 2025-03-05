@@ -2,13 +2,22 @@
 
 namespace core\Modules\Cart\Rules;
 
-use Illuminate\Support\Facades\Session;
+use core\Modules\Cart\Repositories\CartRepositoryInterface;
 
 class ApplyDiscountRule
 {
+    protected $cartRepository;
+
+    public function __construct(CartRepositoryInterface $cartRepository)
+    {
+        $this->cartRepository = $cartRepository;
+    }
+
     public function apply($total)
     {
-        $paymentMethod = Session::get('paymentMethod', 'pix');
+        $cart = $this->cartRepository->getCart();
+
+        $paymentMethod = $cart['paymentMethod'] ?? 'pix';
 
         if ($paymentMethod === 'pix' || $paymentMethod === 'credito_vista') {
             $discountPercentage = 10;

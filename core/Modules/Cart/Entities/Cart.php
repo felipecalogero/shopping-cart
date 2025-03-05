@@ -4,24 +4,33 @@ namespace core\Modules\Cart\Entities;
 
 class Cart
 {
-    public static function addProduct($cart, $product, $quantity)
+    private $items = [];
+
+    public function addProduct($product, $quantity)
     {
-        if (isset($cart[$product->id])) {
-            $cart[$product->id]['quantity'] += $quantity;
+        if (isset($this->items[$product->id])) {
+            $this->items[$product->id]['quantity'] += $quantity;
         } else {
-            $cart[$product->id] = [
+            $this->items[$product->id] = [
                 'name' => $product->name,
                 'price' => $product->price,
                 'quantity' => $quantity
             ];
         }
-
-        return $cart;
     }
 
-    public static function removeProduct($cart, $productId)
+    public function removeProduct($productId)
     {
-        unset($cart[$productId]);
-        return $cart;
+        unset($this->items[$productId]);
+    }
+
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    public function setItems(array $items)
+    {
+        $this->items = $items;
     }
 }

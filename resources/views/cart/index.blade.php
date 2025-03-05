@@ -15,7 +15,7 @@
         <h1>Carrinho de Compras</h1>
     </header>
 
-    @if (session()->has('cart') && count(session()->get('cart')) > 0)
+    @if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0)
         <div class="cart-container">
             <table class="cart-table">
                 <thead>
@@ -28,13 +28,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (session()->get('cart', []) as $produtoId => $item)
+                    @foreach ($_SESSION['cart'] as $productId => $product)
                         <tr>
-                            <td>{{ $item['name'] }}</td>
-                            <td>R$ {{ number_format($item['price'], 2, ',', '.') }}</td>
-                            <td>{{ $item['quantity'] }}</td>
-                            <td>R$ {{ number_format($item['price'] * $item['quantity'], 2, ',', '.') }}</td>
-                            <td><a href="{{ route('cart.remove', $produtoId) }}" class="remove-btn">Remover</a></td>
+                            <td>{{ $product['name'] }}</td>
+                            <td>R$ {{ number_format($product['price'], 2, ',', '.') }}</td>
+                            <td>{{ $product['quantity'] }}</td>
+                            <td>R$ {{ number_format($product['price'] * $product['quantity'], 2, ',', '.') }}</td>
+                            <td><a href="{{ route('cart.remove', $productId) }}" class="remove-btn">Remover</a></td>
                         </tr>
                     @endforeach
                 </tbody>

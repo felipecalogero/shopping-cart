@@ -2,34 +2,41 @@
 
 namespace core\Modules\Cart\Handlers;
 
-use core\Modules\Cart\Validators\AddProductValidator;
-use core\Modules\Cart\Presenters\AddProductPresenter;
-use core\Modules\Cart\Exceptions\ProductNotFoundException;
+use core\Modules\Cart\Factories\CartFactory;
+use core\Modules\Cart\Repositories\CartRepositoryInterface;
 use core\Modules\Cart\Entities\Cart;
-use Illuminate\Support\Facades\Session;
+use core\Modules\Cart\Presenters\AddProductPresenter;
+use core\Modules\Cart\Validators\AddProductValidator;
 
 class AddProductHandler
 {
     protected $validator;
     protected $presenter;
+    protected $cartRepository;
 
     public function __construct(
         AddProductValidator $validator,
-        AddProductPresenter $presenter
+        AddProductPresenter $presenter,
+        CartRepositoryInterface $cartRepository
     ) {
         $this->validator = $validator;
         $this->presenter = $presenter;
+        $this->cartRepository = $cartRepository;
     }
 
     public function handle($product, $quantity = 1)
     {
         $this->validator->validate($product);
 
-        $cart = Session::get('cart', []);
+        $cartItems = $this->cartRepository->getCart();
 
-        $cart = Cart::addProduct($cart, $product, $quantity);
-        Session::put('cart', $cart);
+        $cart = CartFactory::create();
+        $cart->setItems($cartItems);
 
-        return $this->presenter->present($cart);
+        $cart->addProduct($product, $quantity);
+
+        $this->cartRepository->saveCart($cart->getItems());
+
+        return $this->presenter->present($cart->getItems());
     }
 }
